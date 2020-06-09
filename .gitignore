@@ -5,8 +5,9 @@ node_modules
 dist
 .cache
 
-# yarn error log
+# yarn
 yarn-error.log
+yarn.lock
 
 # IDEA
 .idea

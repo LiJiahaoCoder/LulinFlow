@@ -5,8 +5,8 @@
   "main": "src/index.ts",
   "types": "src/index.d.ts",
   "scripts": {
-    "lint": "tslint --cache --config tslint.json '{lib,gl-matrix}/**/*.ts(x)?'",
-    "lint:fix": "tslint --cache --config tslint.json '{lib,gl-matrix}/**/*.ts(x)?' --fix",
+    "lint": "tslint --config tslint.json '{lib,gl-matrix}/**/*.ts(x)?'",
+    "lint:fix": "tslint --config tslint.json '{lib,gl-matrix}/**/*.ts(x)?' --fix",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
@@ -23,11 +23,11 @@
   "husky": {
     "hooks": {
       "pre-push": "npm run test",
-      "pre-commit": "npm run lint"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "**/*.{js,jsx,tsx,ts}": [
+    "**/*.{tsx,ts}": [
       "npm run lint:fix",
       "git add"
     ]
