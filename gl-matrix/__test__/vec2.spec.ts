@@ -1,4 +1,3 @@
-import { transcode } from 'buffer';
 import Vec2 from '../src/vec2';
 
 it('should get a vec2 with initial value', () => {
@@ -13,6 +12,13 @@ it('should get correct x and y value', () => {
 
   expect( vec2.x ).toBe( 0.0 );
   expect( vec2.y ).toBe( 0.0 );
+});
+
+it('should get initialized values of x and y', () => {
+  const vec2 = new Vec2({ x: 2.0, y: 9.0 });
+
+  expect( vec2.x ).toBe( 2.0 );
+  expect( vec2.y ).toBe( 9.0 );
 });
 
 it('should get correct length of a vec2', () => {

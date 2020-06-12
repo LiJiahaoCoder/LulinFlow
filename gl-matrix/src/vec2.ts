@@ -1,12 +1,12 @@
-import { equal, ARRAY } from './common';
+import { ARRAY } from './common';
 
 export default class Vec2 {
-  public readonly elements: ARRAY_TYPE;
+  public readonly elements: ArrayType;
 
-  constructor () {
+  constructor ( pram: Vec2Constructor = { x: 0.0, y: 0.0 } ) {
     this.elements = new ARRAY( 2 );
-    this.elements[ 0 ] = 0.0;
-    this.elements[ 1 ] = 0.0;
+    this.elements[ 0 ] = pram.x;
+    this.elements[ 1 ] = pram.y;
   }
 
   /**

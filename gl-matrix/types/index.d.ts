@@ -1,1 +1,6 @@
-declare type ARRAY_TYPE = number[] | Float32Array;
+declare type ArrayType = number[] | Float32Array;
+
+declare type Vec2Constructor = {
+  x: number,
+  y: number,
+};
