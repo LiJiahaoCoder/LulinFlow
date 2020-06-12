@@ -297,4 +297,20 @@ export default class Vec2 {
       numeral( 1.0 ).divide( this.y ).value(),
     );
   }
+
+  /**
+   * Normalize a vec2
+   *
+   * @returns {Vec2} Vec2
+   */
+  public normalize (): Vec2 {
+    if ( this.length > 0 ) {
+      this.set(
+        this.x / this.length,
+        numeral( this.y ).divide( this.length ).value(),
+      );
+    }
+
+    return this;
+  }
 }

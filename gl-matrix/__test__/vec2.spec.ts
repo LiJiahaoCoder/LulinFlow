@@ -1,3 +1,4 @@
+import { equal } from '../src/common';
 import Vec2 from '../src/vec2';
 
 it('should get a vec2 with initial value', () => {
@@ -215,4 +216,12 @@ it('should get inversed vec2 when call inverse method', () => {
 
   expect( vec2.x ).toBe( 0.5 );
   expect( vec2.y ).toBe( -1.0 );
+});
+
+it('should get normalized vec2 when call normalize method', () => {
+  const vec2 = new Vec2({ x: 3.0, y: -4.0 });
+  vec2.normalize();
+
+  expect( equal( vec2.x, 0.6 ) ).toBeTruthy();
+  expect( equal( vec2.y, -0.8 ) ).toBeTruthy();
 });
