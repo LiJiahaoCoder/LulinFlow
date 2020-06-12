@@ -10,6 +10,26 @@ export default class Vec2 {
   }
 
   /**
+   * Get x of vec2
+   *
+   * @readonly
+   * @type {number}
+   */
+  get x (): number {
+    return this.elements[ 0 ];
+  }
+
+  /**
+   * Get y of vec2
+   *
+   * @readonly
+   * @type {number}
+   */
+  get y (): number {
+    return this.elements[ 1 ];
+  }
+
+  /**
    * Create a new vec2 initialized with values from source vec2
    *
    * @param {Vec2} source
@@ -44,7 +64,7 @@ export default class Vec2 {
    * @returns {Vec2} Target vec2
    */
   static copy ( target: Vec2, source: Vec2 ): Vec2 {
-    return target.set( source.elements[ 0 ], source.elements[ 1 ] );
+    return target.set( source.x, source.y );
   }
 
   /**
@@ -58,8 +78,8 @@ export default class Vec2 {
     const res = new Vec2();
 
     return res.set(
-      v1.elements[ 0 ] + v2.elements[ 0 ],
-      v1.elements[ 1 ] + v2.elements[ 1 ],
+      v1.x + v2.x,
+      v1.y + v2.y,
     );
   }
 
@@ -74,8 +94,8 @@ export default class Vec2 {
     const res = new Vec2();
 
     return res.set(
-      v1.elements[ 0 ] - v2.elements[ 0 ],
-      v1.elements[ 1 ] - v2.elements[ 1 ],
+      v1.x - v2.x,
+      v1.y - v2.y,
     );
   }
 
@@ -90,8 +110,8 @@ export default class Vec2 {
     const res = new Vec2();
 
     return res.set(
-      v1.elements[ 0 ] * v2.elements[ 0 ],
-      v1.elements[ 1 ] * v2.elements[ 1 ],
+      v1.x * v2.x,
+      v1.y * v2.y,
     );
   }
 
@@ -106,9 +126,27 @@ export default class Vec2 {
     const res = new Vec2();
 
     return res.set(
-      v1.elements[ 0 ] / v2.elements[ 0 ],
-      v1.elements[ 1 ] / v2.elements[ 1 ],
+      v1.x / v2.x,
+      v1.y / v2.y,
     );
+  }
+
+  /**
+   * Scales a vec2 by a scalar number
+   *
+   * @static
+   * @param {Vec2} vec2 Vec2 to be scaled
+   * @param {number} scale Amount to scale the vector by
+   * @returns {Vec2} New vec2
+   */
+  static scale ( vec2: Vec2, scale: number ): Vec2 {
+    const res = new Vec2();
+    res.set(
+      vec2.x * scale,
+      vec2.y * scale,
+    );
+
+    return res;
   }
 
   /**
@@ -154,8 +192,8 @@ export default class Vec2 {
    */
   public add ( vec2: Vec2 ): Vec2 {
     return this.set(
-      this.elements[ 0 ] + vec2.elements[ 0 ],
-      this.elements[ 1 ] + vec2.elements[ 1 ],
+      this.elements[ 0 ] + vec2.x,
+      this.elements[ 1 ] + vec2.y,
     );
   }
 
@@ -167,8 +205,8 @@ export default class Vec2 {
    */
   public subtract ( vec2: Vec2 ): Vec2 {
     return this.set(
-      this.elements[ 0 ] - vec2.elements[ 0 ],
-      this.elements[ 1 ] - vec2.elements[ 1 ],
+      this.elements[ 0 ] - vec2.x,
+      this.elements[ 1 ] - vec2.y,
     );
   }
 
@@ -180,8 +218,8 @@ export default class Vec2 {
    */
   public multiply ( vec2: Vec2 ): Vec2 {
     return this.set(
-      this.elements[ 0 ] * vec2.elements[ 0 ],
-      this.elements[ 1 ] * vec2.elements[ 1 ],
+      this.elements[ 0 ] * vec2.x,
+      this.elements[ 1 ] * vec2.y,
     );
   }
 
@@ -193,8 +231,21 @@ export default class Vec2 {
    */
   public divide ( vec2: Vec2 ): Vec2 {
     return this.set(
-      this.elements[ 0 ] / vec2.elements[ 0 ],
-      this.elements[ 1 ] / vec2.elements[ 1 ],
+      this.elements[ 0 ] / vec2.x,
+      this.elements[ 1 ] / vec2.y,
     );
+  }
+
+  /**
+   * Scales a vec2 by a scalar number
+   *
+   * @param {number} scale Amount to scale the vector by
+   * @returns {Vec2} Vec2
+   */
+  public scale ( scale: number ): Vec2 {
+    this.elements[ 0 ] = this.elements[ 0 ] * scale;
+    this.elements[ 1 ] = this.elements[ 1 ] * scale;
+
+    return this;
   }
 }
