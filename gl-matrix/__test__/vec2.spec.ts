@@ -268,3 +268,12 @@ it('should get rotated vec2 when call rotate method', () => {
   expect( vec2.x ).toBe( 0.0 );
   expect( vec2.y ).toBe( vec2.length );
 });
+
+it('should get correct angle of 2 vec2s when call angle static method', () => {
+  const v1 = new Vec2({ x: 1.0, y: 1.0 });
+  const v2 = new Vec2({ x: 1.0, y: 0.0 });
+
+  const angle = Vec2.angle( v1, v2 );
+
+  expect( equal( angle, 45.0 ) ).toBeTruthy();
+});

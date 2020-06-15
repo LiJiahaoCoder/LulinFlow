@@ -1,5 +1,5 @@
 import numeral from 'numeral';
-import { toRadian, ARRAY } from './common';
+import { toDegree, toRadian, ARRAY } from './common';
 
 export default class Vec2 {
   public readonly elements: ArrayType;
@@ -221,6 +221,38 @@ export default class Vec2 {
       x: Math.cos(r) * scale,
       y: Math.sin(r) * scale,
     });
+  }
+
+  /**
+   * Get the angle between two 2D vectors
+   *
+   * @param {Vec2} v1 First vec2
+   * @param {Vec2} v2 Second vec2
+   * @returns {number} Angle in degrees
+   */
+  static angle ( v1: Vec2, v2: Vec2 ): number {
+    let len1 = 0;
+    let len2 = 0;
+    if ( v1.length > 0 ) {
+      len1 = 1 / v1.length;
+    }
+    if ( v2.length > 0 ) {
+      len2 = 1 / v2.length;
+    }
+
+    const cos = numeral( v1.x * v2.x )
+      .add( v1.y * v2.y )
+      .multiply( len1 )
+      .multiply( len2 )
+      .value();
+
+    if ( cos > 1.0 || len1 === 0 || len2 === 0 ) {
+      return toDegree( 0 );
+    } else if ( cos < -1.0 ) {
+      return toDegree( Math.PI );
+    } else {
+      return toDegree( Math.acos( cos ) );
+    }
   }
 
   /**
