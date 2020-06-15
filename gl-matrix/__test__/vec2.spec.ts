@@ -269,6 +269,13 @@ it('should get rotated vec2 when call rotate method', () => {
   expect( vec2.y ).toBe( vec2.length );
 });
 
+it('should get a random vec2 when call random static method', () => {
+  const vec2 = Vec2.random( 2.0 );
+
+  expect( vec2.x >= -2.0 && vec2.x <= 2.0 ).toBeTruthy();
+  expect( vec2.y >= -2.0 && vec2.y <= 2.0 ).toBeTruthy();
+});
+
 it('should get correct angle of 2 vec2s when call angle static method', () => {
   const v1 = new Vec2({ x: 1.0, y: 1.0 });
   const v2 = new Vec2({ x: 1.0, y: 0.0 });
@@ -276,6 +283,33 @@ it('should get correct angle of 2 vec2s when call angle static method', () => {
   const angle = Vec2.angle( v1, v2 );
 
   expect( equal( angle, 45.0 ) ).toBeTruthy();
+});
+
+it('should get 0 when call angle static method given a vec2 with 0 length', () => {
+  const v1 = new Vec2();
+  const v2 = new Vec2({ x: 1.0, y: 0.0 });
+
+  const angle = Vec2.angle( v1, v2 );
+
+  expect( equal( angle, 0 ) ).toBeTruthy();
+});
+
+it('should get π when call angle static method given 2 vec2s', () => {
+  const v1 = new Vec2({ x: 1.0, y: 0.0 });
+  const v2 = new Vec2();
+
+  const angle = Vec2.angle( v1, v2 );
+
+  expect( equal( angle, 180.0 ) ).toBeTruthy();
+});
+
+it('should get π when call angle static method given 2 vec2s', () => {
+  const v1 = new Vec2({ x: -1.0, y: 0.0 });
+  const v2 = new Vec2({ x: 1.0, y: 0.0 });
+
+  const angle = Vec2.angle( v1, v2 );
+
+  expect( equal( angle, 180 ) ).toBeTruthy();
 });
 
 it('should get true when compare two exactly equal vec2s', () => {

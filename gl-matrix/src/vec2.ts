@@ -246,9 +246,9 @@ export default class Vec2 {
       .multiply( len2 )
       .value();
 
-    if ( cos > 1.0 || len1 === 0 || len2 === 0 ) {
+    if ( cos > 1.0 || len1 === 0 ) {
       return toDegree( 0 );
-    } else if ( cos < -1.0 ) {
+    } else if ( cos < -1.0 || len2 === 0 ) {
       return toDegree( Math.PI );
     } else {
       return toDegree( Math.acos( cos ) );
