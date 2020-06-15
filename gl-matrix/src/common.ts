@@ -11,7 +11,17 @@ export let ARRAY = ( typeof Float32Array !== 'undefined' ) ? Float32Array : Arra
  * @returns {number} Radian
  */
 export function toRadian ( angle: number ): number {
-  return angle * Math.PI / 180;
+  return numeral( angle ).multiply( Math.PI ).divide( 180.0 ).value();
+}
+
+/**
+ * Convert radian to degree
+ *
+ * @param {number} angle Radian
+ * @returns {number} Degrees
+ */
+export function toDegree ( angle: number ): number {
+  return  numeral( angle ).multiply( 180.0 ).divide( Math.PI ).value();
 }
 
 /**
