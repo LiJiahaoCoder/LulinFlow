@@ -15,3 +15,12 @@ it('should get initial vec3 with specified value', () => {
   expect( vec3.y ).toBe( 2.0 );
   expect( vec3.z ).toBe( 3.0 );
 });
+
+it('should get the same vec3 when call clone static method', () => {
+  const source = new Vec3({ x: 1.0, y: 1.0, z: 1.5 });
+  const cloned = Vec3.clone( source );
+
+  expect( source.x ).toBe( cloned.x );
+  expect( source.y ).toBe( cloned.y );
+  expect( source.z ).toBe( cloned.z );
+});

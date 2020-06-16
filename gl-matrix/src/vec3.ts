@@ -1,4 +1,5 @@
 import { ARRAY } from './common';
+import Vec2 from './vec2';
 
 export default class Vec3 {
   public readonly elements: ArrayType;
@@ -38,5 +39,20 @@ export default class Vec3 {
    */
   get z (): number {
     return this.elements[ 2 ];
+  }
+
+  /**
+   * Create a new vec3 initialized with values from source vec3
+   *
+   * @static
+   * @param {Vec3} source
+   * @returns {Vec3} New vec3
+   */
+  static clone ( source: Vec3 ): Vec3 {
+    return new Vec3({
+      x: source.x,
+      y: source.y,
+      z: source.z,
+    });
   }
 }
