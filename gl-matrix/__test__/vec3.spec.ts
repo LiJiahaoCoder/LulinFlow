@@ -1,3 +1,4 @@
+import { equal } from '../src/common';
 import Vec3 from '../src/vec3';
 
 describe('Tests of vec3', () => {
@@ -109,5 +110,27 @@ describe('Tests of vec3', () => {
     expect( res.x ).toBe( -1.0 );
     expect( res.y ).toBe( -4.0 );
     expect( res.z ).toBe( -3.0 );
+  });
+
+  it('should get multiply vec3 when call subtract method', () => {
+    const v1 = new Vec3({ x: 2.0, y: 0.2, z: -1.0 });
+    const v2 = new Vec3({ x: 1.0, y: 4.0, z: 3.0 });
+
+    v1.multiply( v2 );
+
+    expect( equal( v1.x, 2.0) ).toBeTruthy();
+    expect( equal( v1.y, 0.8) ).toBeTruthy();
+    expect( equal( v1.z, -3.0) ).toBeTruthy();
+  });
+
+  it('should get a new multiply vec3 when call subtract static method', () => {
+    const v1 = new Vec3({ x: 2.0, y: 0.2, z: -1.0 });
+    const v2 = new Vec3({ x: 1.0, y: 4.0, z: 3.0 });
+
+    const res = Vec3.multiply( v1, v2 );
+
+    expect( equal( res.x, 2.0) ).toBeTruthy();
+    expect( equal( res.y, 0.8) ).toBeTruthy();
+    expect( equal( res.z, -3.0) ).toBeTruthy();
   });
 });

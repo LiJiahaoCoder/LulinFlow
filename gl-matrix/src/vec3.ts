@@ -59,9 +59,9 @@ export default class Vec3 {
   /**
    * Copy values from source vec3 to target vec3
    *
-   * @param {Vec2} target Target vec3
-   * @param {Vec2} source Source vec3
-   * @returns {Vec2} Target vec3
+   * @param {Vec3} target Target vec3
+   * @param {Vec3} source Source vec3
+   * @returns {Vec3} Target vec3
    */
   static copy ( target: Vec3, source: Vec3 ): Vec3 {
     return target.set( source.x, source.y, source.z );
@@ -85,9 +85,9 @@ export default class Vec3 {
   /**
    * Subtracts vec3 from another vec3
    *
-   * @param {Vec2} v1 Vec3 to subtract
-   * @param {Vec2} v2 Vec3 to be subtracted
-   * @returns {Vec2} Result of subtracting two vec3s
+   * @param {Vec3} v1 Vec3 to subtract
+   * @param {Vec3} v2 Vec3 to be subtracted
+   * @returns {Vec3} Result of subtracting two vec3s
    */
   static subtract ( v1: Vec3, v2: Vec3 ): Vec3 {
     const res = new Vec3();
@@ -96,6 +96,23 @@ export default class Vec3 {
       numeral( v1.x ).subtract( v2.x ).value(),
       numeral( v1.y ).subtract( v2.y ).value(),
       numeral( v1.z ).subtract( v2.z ).value(),
+    );
+  }
+
+  /**
+   * Multiply vec3 with another vec3
+   *
+   * @param {Vec3} v1 Vec3 to multiply
+   * @param {Vec3} v2 Vec3 to be multiplied
+   * @returns {Vec3} Result of multiplying two vec3s
+   */
+  static multiply ( v1: Vec3, v2: Vec3 ): Vec3 {
+    const res = new Vec3();
+
+    return res.set(
+      numeral( v1.x ).multiply( v2.x ).value(),
+      numeral( v1.y ).multiply( v2.y ).value(),
+      numeral( v1.z ).multiply( v2.z ).value(),
     );
   }
 
@@ -136,7 +153,7 @@ export default class Vec3 {
   }
 
   /**
-   * Set new z value of vec2
+   * Set new z value of vec3
    *
    * @param {number} z New z value
    * @returns {Vec3} Vec3
@@ -164,14 +181,28 @@ export default class Vec3 {
   /**
    * Subtracts curren vec3 from another vec3
    *
-   * @param {Vec2} vec2 Received vec3 to be subtracted
-   * @returns {Vec2} Vec3
+   * @param {Vec3} vec3 Received vec3 to be subtracted
+   * @returns {Vec3} Vec3
    */
-  public subtract ( vec2: Vec3 ): Vec3 {
+  public subtract ( vec3: Vec3 ): Vec3 {
     return this.set(
-      numeral( this.x ).subtract( vec2.x ).value(),
-      numeral( this.y ).subtract( vec2.y ).value(),
-      numeral( this.z ).subtract( vec2.z ).value(),
+      numeral( this.x ).subtract( vec3.x ).value(),
+      numeral( this.y ).subtract( vec3.y ).value(),
+      numeral( this.z ).subtract( vec3.z ).value(),
+    );
+  }
+
+  /**
+   * Multiply curren vec3 from another vec3
+   *
+   * @param {Vec3} vec3 Received vec3 to be multiplied
+   * @returns {Vec3} Vec3
+   */
+  public multiply ( vec3: Vec3 ): Vec3 {
+    return this.set(
+      numeral( this.x ).multiply( vec3.x ).value(),
+      numeral( this.y ).multiply( vec3.y ).value(),
+      numeral( this.z ).multiply( vec3.z ).value(),
     );
   }
 }
