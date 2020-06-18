@@ -165,6 +165,21 @@ export default class Vec3 {
   }
 
   /**
+   * Calculates the euclidian distance between two vec3s
+   *
+   * @param {Vec3} v1 First vec3
+   * @param {Vec3} v2 Second vec3
+   * @returns {number} Distance of two vec3s
+   */
+  static distance ( v1: Vec3, v2: Vec3 ): number {
+    const x = numeral( v1.x ).subtract( v2.x ).value();
+    const y = numeral( v1.y ).subtract( v2.y ).value();
+    const z = numeral( v1.z ).subtract( v2.z ).value();
+
+    return Math.sqrt( x * x + y * y + z * z );
+  }
+
+  /**
    * Set new value of vector
    *
    * @param {number} x New x value

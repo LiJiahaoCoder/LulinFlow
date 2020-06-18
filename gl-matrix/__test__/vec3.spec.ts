@@ -181,4 +181,13 @@ describe('Tests of vec3', () => {
     expect( equal( res.y, 0.4) ).toBeTruthy();
     expect( equal( res.z, -2.0) ).toBeTruthy();
   });
+
+  it('should get correct distance between two vec3s', () => {
+    const v1 = new Vec3();
+    const v2 = new Vec3({ x: 1.0, y: 2.0, z: -2.0 });
+
+    const distance = Vec3.distance( v1, v2 );
+
+    expect( equal( distance, 3.0 ) ).toBeTruthy();
+  });
 });
