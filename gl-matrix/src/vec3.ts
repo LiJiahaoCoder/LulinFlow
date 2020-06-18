@@ -146,6 +146,25 @@ export default class Vec3 {
   }
 
   /**
+   * Scales a vec3 by a scalar number
+   *
+   * @static
+   * @param {Vec3} vec3 Vec3 to be scaled
+   * @param {number} scale Amount to scale the vector by
+   * @returns {Vec3} New vec3
+   */
+  static scale ( vec3: Vec3, scale: number ): Vec3 {
+    const res = new Vec3();
+    res.set(
+      numeral( vec3.x ).multiply( scale ).value(),
+      numeral( vec3.y ).multiply( scale ).value(),
+      numeral( vec3.z ).multiply( scale ).value(),
+    );
+
+    return res;
+  }
+
+  /**
    * Set new value of vector
    *
    * @param {number} x New x value
@@ -247,5 +266,21 @@ export default class Vec3 {
       numeral( this.y ).divide( vec3.y ).value(),
       numeral( this.z ).divide( vec3.z ).value(),
     );
+  }
+
+  /**
+   * Scales a vec3 by a scalar number
+   *
+   * @param {number} scale Amount to scale the vector by
+   * @returns {Vec3} Vec3
+   */
+  public scale ( scale: number ): Vec3 {
+    this.set(
+      numeral( this.x ).multiply( scale ).value(),
+      numeral( this.y ).multiply( scale ).value(),
+      numeral( this.z ).multiply( scale ).value(),
+    );
+
+    return this;
   }
 }

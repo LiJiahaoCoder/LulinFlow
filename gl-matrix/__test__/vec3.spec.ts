@@ -134,7 +134,7 @@ describe('Tests of vec3', () => {
     expect( equal( res.z, -3.0) ).toBeTruthy();
   });
 
-  it('should get divided vec3 when call divede method', () => {
+  it('should get divided vec3 when call divide method', () => {
     const v1 = new Vec3({ x: 2.0, y: 0.2, z: -1.0 });
     const v2 = new Vec3({ x: 1.0, y: 0.1, z: -1.0 });
 
@@ -145,7 +145,7 @@ describe('Tests of vec3', () => {
     expect( equal( v1.z, 1.0) ).toBeTruthy();
   });
 
-  it('should get a new divided vec3 when call divede static method', () => {
+  it('should get a new divided vec3 when call divide static method', () => {
     const v1 = new Vec3({ x: 2.0, y: 0.2, z: -1.0 });
     const v2 = new Vec3({ x: 1.0, y: 0.1, z: -1.0 });
 
@@ -160,5 +160,25 @@ describe('Tests of vec3', () => {
     const vec3 = new Vec3({ x: 1.0, y: 2.0, z: 2.0 });
 
     expect( equal( vec3.length, 3.0 ) ).toBeTruthy();
+  });
+
+  it('should get scaled vec3 when call scale method', () => {
+    const v1 = new Vec3({ x: 2.0, y: 0.2, z: -1.0 });
+
+    v1.scale( 2.0 );
+
+    expect( equal( v1.x, 4.0) ).toBeTruthy();
+    expect( equal( v1.y, 0.4) ).toBeTruthy();
+    expect( equal( v1.z, -2.0) ).toBeTruthy();
+  });
+
+  it('should get a new scaled vec3 when call scale static method', () => {
+    const v1 = new Vec3({ x: 2.0, y: 0.2, z: -1.0 });
+
+    const res = Vec3.scale( v1, 2.0 );
+
+    expect( equal( res.x, 4.0) ).toBeTruthy();
+    expect( equal( res.y, 0.4) ).toBeTruthy();
+    expect( equal( res.z, -2.0) ).toBeTruthy();
   });
 });
