@@ -83,6 +83,23 @@ export default class Vec3 {
   }
 
   /**
+   * Subtracts vec3 from another vec3
+   *
+   * @param {Vec2} v1 Vec3 to subtract
+   * @param {Vec2} v2 Vec3 to be subtracted
+   * @returns {Vec2} Result of subtracting two vec3s
+   */
+  static subtract ( v1: Vec3, v2: Vec3 ): Vec3 {
+    const res = new Vec3();
+
+    return res.set(
+      numeral( v1.x ).subtract( v2.x ).value(),
+      numeral( v1.y ).subtract( v2.y ).value(),
+      numeral( v1.z ).subtract( v2.z ).value(),
+    );
+  }
+
+  /**
    * Set new value of vector
    *
    * @param {number} x New x value
@@ -141,6 +158,20 @@ export default class Vec3 {
       numeral( this.x ).add( vec3.x ).value(),
       numeral( this.y ).add( vec3.y ).value(),
       numeral( this.z ).add( vec3.z ).value(),
+    );
+  }
+
+  /**
+   * Subtracts curren vec3 from another vec3
+   *
+   * @param {Vec2} vec2 Received vec3 to be subtracted
+   * @returns {Vec2} Vec3
+   */
+  public subtract ( vec2: Vec3 ): Vec3 {
+    return this.set(
+      numeral( this.x ).subtract( vec2.x ).value(),
+      numeral( this.y ).subtract( vec2.y ).value(),
+      numeral( this.z ).subtract( vec2.z ).value(),
     );
   }
 }
