@@ -256,6 +256,20 @@ describe('Tests of vec3', () => {
     expect( vec3.z <= 2.0 && vec3.z >= -2.0 ).toBeTruthy();
   });
 
+  it('should get a random vec3 without param length when call random method', () => {
+    const vec3 = Vec3.random();
+
+    expect( equal( vec3.length, 1.0 ) ).toBeTruthy();
+  });
+
+  it('should get a random vec3 when call static random method', () => {
+    const vec3 = Vec3.random();
+
+    expect( vec3.x <= 1.0 && vec3.x >= -1.0 ).toBeTruthy();
+    expect( vec3.y <= 1.0 && vec3.y >= -1.0 ).toBeTruthy();
+    expect( vec3.z <= 1.0 && vec3.z >= -1.0 ).toBeTruthy();
+  });
+
   it('should get first point when t is 0', () => {
     const v1 = new Vec3({ x: 1.0, y: 1.0, z: 1.0 });
     const v2 = new Vec3({ x: 4.0, y: 4.0, z: 4.0 });
