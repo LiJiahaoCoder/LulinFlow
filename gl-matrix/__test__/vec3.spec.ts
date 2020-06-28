@@ -255,4 +255,43 @@ describe('Tests of vec3', () => {
     expect( vec3.y <= 2.0 && vec3.y >= -2.0 ).toBeTruthy();
     expect( vec3.z <= 2.0 && vec3.z >= -2.0 ).toBeTruthy();
   });
+
+  it('should get first point when t is 0', () => {
+    const v1 = new Vec3({ x: 1.0, y: 1.0, z: 1.0 });
+    const v2 = new Vec3({ x: 4.0, y: 4.0, z: 4.0 });
+    const v3 = new Vec3({ x: 6.0, y: 6.0, z: 6.0 });
+    const v4 = new Vec3({ x: 10.0, y: 10.0, z: 10.0 });
+
+    const res = Vec3.bezier( v1, v2, v3, v4, 0.0 );
+
+    expect( res.x ).toBe( v1.x );
+    expect( res.y ).toBe( v1.y );
+    expect( res.z ).toBe( v1.z );
+  });
+
+  it('should get last point when t is 1', () => {
+    const v1 = new Vec3({ x: 1.0, y: 1.0, z: 1.0 });
+    const v2 = new Vec3({ x: 4.0, y: 4.0, z: 4.0 });
+    const v3 = new Vec3({ x: 6.0, y: 6.0, z: 6.0 });
+    const v4 = new Vec3({ x: 10.0, y: 10.0, z: 10.0 });
+
+    const res = Vec3.bezier( v1, v2, v3, v4, 1.0 );
+
+    expect( res.x ).toBe( v4.x );
+    expect( res.y ).toBe( v4.y );
+    expect( res.z ).toBe( v4.z );
+  });
+
+  it('should get correct point when t is 0.5', () => {
+    const v1 = new Vec3({ x: 1.0, y: 1.0, z: 1.0 });
+    const v2 = new Vec3({ x: 4.0, y: 4.0, z: 4.0 });
+    const v3 = new Vec3({ x: 6.0, y: 6.0, z: 6.0 });
+    const v4 = new Vec3({ x: 10.0, y: 10.0, z: 10.0 });
+
+    const res = Vec3.bezier( v1, v2, v3, v4, 0.5 );
+
+    expect( equal( res.x, 5.125 ) ).toBeTruthy();
+    expect( equal( res.y, 5.125 ) ).toBeTruthy();
+    expect( equal( res.z, 5.125 ) ).toBeTruthy();
+  });
 });

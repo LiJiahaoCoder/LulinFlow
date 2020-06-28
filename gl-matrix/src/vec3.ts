@@ -218,19 +218,19 @@ export default class Vec3 {
    *
    * @param {Vec3} v1 First vec3
    * @param {Vec3} v2 Second vec3
-   * @param {number} delta Interpolation amount, in the range [0-1]
+   * @param {number} t Interpolation amount, in the range [0-1]
    * @returns {Vec3} Vec3
    */
-  static lerp ( v1: Vec3, v2: Vec3, delta: number): Vec3 {
+  static lerp ( v1: Vec3, v2: Vec3, t: number): Vec3 {
     return new Vec3({
       x: numeral( v1.x ).add(
-        delta * numeral( v2.x ).subtract( v1.x ).value(),
+        t * numeral( v2.x ).subtract( v1.x ).value(),
       ).value(),
       y: numeral( v1.y ).add(
-        delta * numeral( v2.y ).subtract( v1.y ).value(),
+        t * numeral( v2.y ).subtract( v1.y ).value(),
       ).value(),
       z: numeral( v1.z ).add(
-        delta * numeral( v2.z ).subtract( v1.z ).value(),
+        t * numeral( v2.z ).subtract( v1.z ).value(),
       ).value(),
     });
   }
@@ -252,6 +252,32 @@ export default class Vec3 {
       x: Math.cos( r ) * zScale,
       y: Math.sin( r ) * zScale,
       z: z * scale,
+    });
+  }
+
+  /**
+   * Performs a bezier interpolation with two control points
+   *
+   * @param {Vec3} v1 The first vec3
+   * @param {Vec3} v2 The second vec3
+   * @param {Vec3} v3 The third vec3
+   * @param {Vec3} v4 The fourth vec3
+   * @param {number} t Interpolation amount, in the range [0-1], between the two inputs
+   * @returns {Vec3} New vec3
+   */
+  static bezier ( v1: Vec3, v2: Vec3, v3: Vec3, v4: Vec3, t: number ): Vec3 {
+    const inverseFactor = 1 - t;
+    const inverseFactorPowers2 = inverseFactor * inverseFactor;
+    const factorPowers2 = t * t;
+    const factor1 = inverseFactorPowers2 * inverseFactor;
+    const factor2 = 3 * t * inverseFactorPowers2;
+    const factor3 = 3 * factorPowers2 * inverseFactor;
+    const factor4 = factorPowers2 * t;
+
+    return new Vec3({
+      x: v1.x * factor1 + v2.x * factor2 + v3.x * factor3 + v4.x * factor4,
+      y: v1.y * factor1 + v2.y * factor2 + v3.y * factor3 + v4.y * factor4,
+      z: v1.z * factor1 + v2.z * factor2 + v3.z * factor3 + v4.z * factor4,
     });
   }
 
