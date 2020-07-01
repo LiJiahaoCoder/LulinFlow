@@ -1,5 +1,5 @@
 import numeral from 'numeral';
-import { ARRAY } from './common';
+import { toDegree, ARRAY } from './common';
 
 export default class Vec3 {
   public readonly elements: ArrayType;
@@ -279,6 +279,28 @@ export default class Vec3 {
       y: v1.y * factor1 + v2.y * factor2 + v3.y * factor3 + v4.y * factor4,
       z: v1.z * factor1 + v2.z * factor2 + v3.z * factor3 + v4.z * factor4,
     });
+  }
+
+  /**
+   * Get the angle between two 3D vectors
+   *
+   * @param {Vec3} v1 First vec3
+   * @param {Vec3} v2 Second vec3
+   * @returns {number} Angle in degrees
+   */
+  static angle ( v1: Vec3, v2: Vec3 ): number {
+    const uv1 = Vec3.clone( v1 ).normalize();
+    const uv2 = Vec3.clone( v2 ).normalize();
+
+    const cosine = Vec3.dot( uv1, uv2 );
+
+    if( cosine > 1.0 ) {
+      return toDegree( 0 );
+    } else if( cosine < -1.0 ) {
+      return toDegree( Math.PI );
+    } else {
+      return toDegree( Math.acos( cosine ) );
+    }
   }
 
   /**
