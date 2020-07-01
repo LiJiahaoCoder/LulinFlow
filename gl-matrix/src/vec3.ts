@@ -304,6 +304,17 @@ export default class Vec3 {
   }
 
   /**
+   * Returns whether or not the vectors have exactly the same elements in the same position (when compared with ===)
+   *
+   * @param {Vec3} v1 First vec3
+   * @param {Vec3} v2 Second vec3
+   * @returns {boolean} True if the vectors are equal, false otherwise.
+   */
+  static exactEquals ( v1: Vec3, v2: Vec3 ): boolean {
+    return v1.x === v2.x && v1.y === v2.y && v1.z === v2.z;
+  }
+
+  /**
    * Set new value of vector
    *
    * @param {number} x New x value

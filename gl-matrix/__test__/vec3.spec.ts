@@ -384,4 +384,22 @@ describe('Tests of vec3', () => {
 
     expect( equal( angle, 45.0 ) ).toBeTruthy();
   });
+
+  it('should get true when two vec3s is exactly equal', () => {
+    const v1 = new Vec3();
+    const v2 = new Vec3();
+
+    const result = Vec3.exactEquals( v1, v2 );
+
+    expect( result ).toBeTruthy();
+  });
+
+  it('should get false when two vec3 is not equal', () => {
+    const v1 = new Vec3();
+    const v2 = new Vec3({ x: 0.0001, y: 0.0, z: 0.0 });
+
+    const result = Vec3.exactEquals( v1, v2 );
+
+    expect( result ).toBeFalsy();
+  });
 });
