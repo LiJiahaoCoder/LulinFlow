@@ -351,4 +351,37 @@ describe('Tests of vec3', () => {
     expect( equal( vec3.y, Math.sqrt( 2 ) ) ).toBeTruthy();
     expect( equal( vec3.z, 0 ) ).toBeTruthy();
   });
+
+  it('should get 0 when call angle static method given cosine is greater than 1.0', () => {
+    const v1 = new Vec3();
+    const v2 = new Vec3();
+
+    const spy = jest.spyOn( Vec3, 'dot' );
+    spy.mockReturnValueOnce( 2.0 );
+
+    const angle = Vec3.angle( v1, v2 );
+
+    expect( angle ).toBe( 0.0 );
+  });
+
+  it('should get 180 when call angle static method given cosine is less than -1.0', () => {
+    const v1 = new Vec3();
+    const v2 = new Vec3();
+
+    const spy = jest.spyOn( Vec3, 'dot' );
+    spy.mockReturnValueOnce( -2.0 );
+
+    const angle = Vec3.angle( v1, v2 );
+
+    expect( equal( angle, 180.0 ) ).toBeTruthy();
+  });
+
+  it('should get 45 when call angle static method given 2 specified vec3s', () => {
+    const v1 = new Vec3({ x: 1.0, y: 0.0, z: 0.0 });
+    const v2 = new Vec3({ x: 2.0, y: 2.0, z: 0.0 });
+
+    const angle = Vec3.angle( v1, v2 );
+
+    expect( equal( angle, 45.0 ) ).toBeTruthy();
+  });
 });
