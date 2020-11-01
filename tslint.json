@@ -13,10 +13,10 @@
         "indent": [true, "spaces", 2],
         "max-line-length": [true, 120],
         "member-ordering": [
-            true,
+            false,
             {
-                "order": "static-first",
-                "alphabetize": true
+                "order": "statics-first",
+                "alphabetize": false
             }
         ],
         "newline-before-return": true,
@@ -32,14 +32,7 @@
         "no-unused-variable": true,
         "no-var-keyword": true,
         "no-var-requires": true,
-        "object-literal-sort-keys": true,
-        "ordered-imports": [
-            true,
-            {
-                "import-sources-order": "lowercase-last",
-                "named-imports-order": "lowercase-first"
-            }
-        ],
+        "object-literal-sort-keys": false,
         "prefer-const": true,
         "quotemark": [true, "single", "avoid-escape"],
         "semicolon": [true, "always", "ignore-bound-class-methods"],
@@ -61,5 +54,5 @@
             ]
         }
     },
-    "rulesDirectory": ["./lib", "./gl-matrix"]
+    "rulesDirectory": "./src"
 }

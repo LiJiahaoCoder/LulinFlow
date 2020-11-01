@@ -1,20 +1,6 @@
-# node packages
 node_modules
-
-# build files
-dist
-.cache
-
-# yarn
-yarn-error.log
-yarn.lock
-
-# IDEA
 .idea
-
-# jest coverage
-coverage
-
-# deploy files
-nginx.conf
-Dockerfile
+.vs
+.vscode
+npm-debug.log
+yarn-error.log

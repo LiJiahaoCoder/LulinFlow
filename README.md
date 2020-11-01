@@ -1,3 +1,3 @@
-# Lulin Flow
+# G7
 
-## Is under development
+Much simpler than G6🤫
