@@ -4,5 +4,5 @@ import {
 } from './utils';
 
 export const create = (query: string) => {
-  const ctx = getContext(getCanvas(query));
+  const gl = getContext(getCanvas(query));
 };
