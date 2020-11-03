@@ -11,6 +11,9 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
   module: {
     rules: [
@@ -24,12 +27,12 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           { loader: 'tslint-loader' },
-        ]
+        ],
       },
       {
-        test: /\.glsl$/,
+        test: /\.(glsl|vs|fs)$/,
         use: [
-          { loader: 'raw-loader' },
+          { loader: 'ts-shader-loader' },
         ],
       },
       {

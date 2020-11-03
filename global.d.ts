@@ -1,6 +1,6 @@
 declare module '*.glsl' {
-  const path: string;
-  export default path;
+  const value: string;
+  export default value;
 }
 
 declare module '*.scss' {
