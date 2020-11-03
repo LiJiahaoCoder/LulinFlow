@@ -1,8 +1,3 @@
-import {
-  getCanvas,
-  getContext,
-} from './utils';
-
-export const create = (query: string) => {
-  const gl = getContext(getCanvas(query));
-};
+export { default as webgl } from './webgl';
+export { default as utils } from './utils';
+export { default as triangle } from './shapes/triangle';
