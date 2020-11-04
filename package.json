@@ -7,8 +7,7 @@
     "test": "NODE_ENV=test jest",
     "commit": "git-cz",
     "start": "webpack-dev-server --config ./webpack.dev.js",
-    "lint": "tslint --config tslint.json '{lib,gl-matrix}/**/*.ts(x)?'",
-    "lint:fix": "tslint --config tslint.json '{lib,gl-matrix}/**/*.ts(x)?' --fix",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "test:coverage": "jest --coverage"
   },
   "keywords": [
@@ -60,11 +59,20 @@
     "bootstrap": "^4.5.3",
     "chalk": "^4.1.0",
     "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^7.12.1",
+    "eslint-config-silent": "^0.17.0",
+    "eslint-config-xo-react": "^0.23.0",
+    "eslint-config-xo-typescript": "^0.35.0",
+    "eslint-import-resolver-typescript": "^2.3.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "friendly-errors-webpack-plugin": "^1.7.0",
     "html-webpack-plugin": "^4.5.0",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
     "lint-staged": "^10.2.9",
+    "prettier": "^2.1.2",
     "prismjs": "^1.22.0",
     "progress-bar-webpack-plugin": "^2.1.0",
     "react": "^17.0.1",
@@ -73,12 +81,11 @@
     "ts-jest": "^26.1.0",
     "ts-loader": "^7.0.5",
     "ts-shader-loader": "^1.0.6",
-    "tslint": "^6.1.2",
-    "tslint-loader": "^3.5.4",
     "typescript": "^3.9.5",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "xo": "^0.34.2"
   },
   "dependencies": {
     "gl-matrix": "^3.3.0"

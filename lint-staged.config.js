@@ -2,6 +2,6 @@
 
 module.exports = {
   '**/*.ts?(x)': (filename) => [
-    `env NODE_ENV=production tslint --fix ${filename.join(' ')}`,
+    `env NODE_ENV=production eslint --fix ${filename.join(' ')}`,
   ],
 };

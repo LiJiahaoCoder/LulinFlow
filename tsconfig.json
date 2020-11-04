@@ -3,7 +3,7 @@
     "target": "ES2019",
     "module": "ESNext",
     "allowJs": true,
-    "jsx": "react",
+    "jsx": "preserve",
     "declaration": true,
     "declarationDir": "lib",
     "removeComments": false,
@@ -25,12 +25,12 @@
   "exclude": [
     "node_modules",
     "dist",
-    "__tests__",
     "lib",
   ],
   "include": [
     "src/**/*",
     "global.d.ts",
     "example",
+    "__tests__",
   ]
 }
