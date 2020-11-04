@@ -1,3 +1,15 @@
-export { default as webgl } from './webgl';
-export { default as utils } from './utils';
-export { default as triangle } from './shapes/triangle';
+import {
+  getCanvas,
+  getContext,
+  initShaders,
+} from './utils';
+import vshader from './shaders/vertex.glsl';
+import fshader from './shaders/fragment.glsl';
+
+export const createWebGL = (query: string) => (
+  initShaders(
+    getContext(getCanvas(query)),
+    vshader,
+    fshader,
+  )
+);

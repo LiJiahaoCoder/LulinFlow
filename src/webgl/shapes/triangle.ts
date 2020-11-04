@@ -1,22 +1,48 @@
-import { TriangleOptions } from '@/types/webgl';
+import { mat4 } from 'gl-matrix';
+import { BasicShapeOptions, WebGLContext } from '@/types/webgl';
 import { initVertexBuffer } from '../utils';
+import BasicShape from './basic';
 
-export const createTriangle = (gl: WebGL2RenderingContext, program: WebGLProgram, options: TriangleOptions) => {
-  const { vertices, colors, indices } = options;
-  initVertexBuffer(
-    gl,
-    program,
-    {
-      vertices,
-      colors,
-      indices,
-      vertexSize: 3,
-      colorSize: 3,
-    },
-  );
-  gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_BYTE, 0);
-};
+class Triangle extends BasicShape {
+  gl: WebGLContext;
 
-export default {
-  createTriangle,
-};
+  constructor (gl: WebGLContext, options: BasicShapeOptions) {
+    super(options);
+    this.gl = gl;
+  }
+
+  create () {
+    initVertexBuffer(
+      this.gl,
+      {
+        vertices: this.vertices,
+        colors: this.colors,
+        indices: this.indices,
+        vertexSize: 3,
+        colorSize: 3,
+      },
+    );
+    this.gl.drawElements(
+      this.gl.TRIANGLES,
+      this.indices.length,
+      this.gl.UNSIGNED_BYTE,
+      0,
+    );
+
+    return this;
+  }
+
+  rotate (rotateMat: mat4) {
+    return this;
+  }
+
+  scale (scaleMat: mat4) {
+    return this;
+  }
+
+  translation (translationMat: mat4) {
+    return this;
+  }
+}
+
+export default Triangle;

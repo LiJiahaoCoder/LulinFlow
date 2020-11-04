@@ -1,15 +1,14 @@
-export interface WebGLContext {
-  gl: WebGL2RenderingContext;
+export interface WebGLContext extends WebGL2RenderingContext {
   program: WebGLProgram;
 }
 
-export interface TriangleOptions {
+export interface BasicShapeOptions {
   vertices: Float32Array;
   colors: Float32Array;
   indices: Uint8Array;
 }
 
-export interface VertexBufferOptions extends TriangleOptions {
+export interface VertexBufferOptions extends BasicShapeOptions {
   vertexSize: number;
   colorSize: number;
 }

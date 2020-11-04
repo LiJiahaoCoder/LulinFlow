@@ -20,7 +20,7 @@ const config = {
     'silent/unicorn',
     'silent/react',
   ],
-  ignorePatterns: ['dist', 'coverage', 'lib', '__tests__'],
+  ignorePatterns: ['dist', 'coverage', 'lib', 'node_modules'],
   rules: {
     'max-params': 'off',
     'no-console': 'error',

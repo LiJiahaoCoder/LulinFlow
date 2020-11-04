@@ -35,7 +35,7 @@ export const createShader = (
   const compiled = gl.getShaderParameter(shader, gl.COMPILE_STATUS);
   if (!compiled) {
     gl.deleteShader(shader);
-    throw new Error(`Failed to compile: ${gl.getShaderInfoLog(shader)}!`);
+    throw new Error(`Failed to compile: ${gl.getShaderInfoLog(shader) ?? ''}!`);
   }
 
   return shader;
@@ -66,7 +66,7 @@ export const createProgram = (
     gl.deleteProgram(program);
     gl.deleteShader(fragmentShader);
     gl.deleteShader(vertexShader);
-    throw new Error(`Failed to link shader program: ${gl.getProgramInfoLog(program)}`);
+    throw new Error(`Failed to link shader program: ${gl.getProgramInfoLog(program) ?? ''}`);
   }
 
   return program;
@@ -80,12 +80,9 @@ export const initShaders = (
   const program = createProgram(gl, vshader, fshader);
 
   gl.useProgram(program);
-  Object.defineProperty(gl, 'program', program);
+  Object.defineProperty(gl, 'program', { value: program, writable: false });
 
-  return {
-    gl,
-    program,
-  };
+  return gl as WebGLContext;
 };
 
 export const getAttribute = (gl: WebGL2RenderingContext, program: WebGLProgram, attribute: string) => {
@@ -98,8 +95,7 @@ export const getAttribute = (gl: WebGL2RenderingContext, program: WebGLProgram, 
 };
 
 export const initVertexBuffer = (
-  gl: WebGL2RenderingContext,
-  program: WebGLProgram,
+  gl: WebGLContext,
   options: VertexBufferOptions,
 ) => {
   const { vertices, colors, vertexSize, colorSize, indices } = options;
@@ -108,16 +104,15 @@ export const initVertexBuffer = (
     throw new Error('Failed to initialize vertex buffer');
   }
 
-  initArrayBuffer(gl, program, vertices, vertexSize, gl.FLOAT, VertexShaderVariables.a_Position);
-  initArrayBuffer(gl, program, colors, colorSize, gl.FLOAT, VertexShaderVariables.a_Color);
+  initArrayBuffer(gl, vertices, vertexSize, gl.FLOAT, VertexShaderVariables.a_Position);
+  initArrayBuffer(gl, colors, colorSize, gl.FLOAT, VertexShaderVariables.a_Color);
 
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, buffer);
   gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
 };
 
 export const initArrayBuffer = (
-  gl: WebGL2RenderingContext,
-  program: WebGLProgram,
+  gl: WebGLContext,
   data: Float32Array,
   size: number,
   type: number,
@@ -131,20 +126,9 @@ export const initArrayBuffer = (
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
   gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
 
-  const a_Attribute = getAttribute(gl, program, attribute);
+  const a_Attribute = getAttribute(gl, gl.program, attribute);
 
   gl.vertexAttribPointer(a_Attribute, size, type, false, 0, 0);
   gl.enableVertexAttribArray(a_Attribute);
   gl.bindBuffer(gl.ARRAY_BUFFER, null);
-};
-
-export default {
-  getCanvas,
-  getContext,
-  createShader,
-  createProgram,
-  initShaders,
-  getAttribute,
-  initVertexBuffer,
-  initArrayBuffer,
 };
