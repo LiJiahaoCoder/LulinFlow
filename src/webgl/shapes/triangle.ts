@@ -9,9 +9,22 @@ class Triangle extends BasicShape {
   constructor (gl: WebGLContext, options: BasicShapeOptions) {
     super(options);
     this.gl = gl;
+    this.create();
   }
 
-  create () {
+  rotate (rotateMat: mat4) {
+    return this;
+  }
+
+  scale (scaleMat: mat4) {
+    return this;
+  }
+
+  translation (translationMat: mat4) {
+    return this;
+  }
+
+  private create () {
     initVertexBuffer(
       this.gl,
       {
@@ -29,18 +42,6 @@ class Triangle extends BasicShape {
       0,
     );
 
-    return this;
-  }
-
-  rotate (rotateMat: mat4) {
-    return this;
-  }
-
-  scale (scaleMat: mat4) {
-    return this;
-  }
-
-  translation (translationMat: mat4) {
     return this;
   }
 }
