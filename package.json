@@ -73,7 +73,7 @@
     "jest": "^26.0.1",
     "lint-staged": "^10.2.9",
     "prettier": "^2.1.2",
-    "prismjs": "^1.22.0",
+    "prismjs": "^1.25.0",
     "progress-bar-webpack-plugin": "^2.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
